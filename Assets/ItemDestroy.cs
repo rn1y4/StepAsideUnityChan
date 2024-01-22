@@ -15,15 +15,16 @@ public class ItemDestroy : MonoBehaviour
     void Update()
     {
         //画面外のオブジェクトを破棄する
-     //   if (!GetComponent<Renderer>().isVisible)
-      //  {
-      //      Destroy(this.gameObject);
-      //  }
+      if (!GetComponent<Renderer>().isVisible)
+      {
+            Debug.Log("DESTROY" + this.gameObject.name);
+            Destroy(this.gameObject);
+       }
     }
 
-    private void OnBecameInvisible()
-    {
-        Debug.Log("DESTROY" + this.gameObject.name);
-        Destroy(this.gameObject);
-    }
+    //private void OnBecameInvisible()
+    //{
+    //    Debug.Log("DESTROY" + this.gameObject.name);
+    //    Destroy(this.gameObject);
+   // }
 }
