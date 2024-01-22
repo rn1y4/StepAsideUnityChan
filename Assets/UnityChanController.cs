@@ -116,11 +116,7 @@ public class UnityChanController : MonoBehaviour
         //Unityちゃんに速度を与える
         this.myRigidbody.velocity = new Vector3(inputVelocityX,inputVelocityY,this.velocityZ); 
         
-        //画面買いのオブジェクトを破棄する
-        if(this.transform.position.z < -10f)
-        {
-            Destroy(this.gameObject);
-        }
+
     }
 
 

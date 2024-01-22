@@ -12,7 +12,7 @@ public class ItemGenerator : MonoBehaviour
     //conePrefabを入れる
     public GameObject conePrefab;
     //スタート地点
-    private int startPos = 80;
+    private int startPos = 30;
     //ゴール地点
     private int goalPos = 360;
     //アイテムを出すx方向の範囲
@@ -21,7 +21,7 @@ public class ItemGenerator : MonoBehaviour
     //unityちゃんオブジェクトを取得
     private GameObject unityChan;
     //unityちゃんとアイテムの生成距離
-    public int itemDistance = 50;
+    public int itemDistance = 20;
     //アイテム間の生成一定距離
     public int itemInterval = 15;
     //前回アイテム生成した位置
@@ -44,18 +44,18 @@ public class ItemGenerator : MonoBehaviour
         //スタート位置から一定距離先かつゴール位置から一定距離手前にUnityちゃんがいるときのみアイテムが生成される
         if (startPos < unityChan.transform.position.z && unityChan.transform.position.z < goalPos - itemDistance)
         {
-            //前回生成したアイテムとunityちゃんの距離が指定の生成距離を超えたとき新規アイテム生成に入る
-            if (lastItemPosition - unityChan.transform.position.z <= itemInterval)
+            //unityちゃんが前回アイテム生成したときにいた座標を超えたとき新規アイテム生成に入る
+            if (lastItemPosition <= unityChan.transform.position.z)
             {
                 //Unityちゃんから一定距離先にアイテムを配置
-                CreateItem(lastItemPosition);
+                CreateItem(unityChan.transform.position.z + itemDistance + itemInterval);
                 //前回生成位置の更新
                 this.lastItemPosition += this.itemInterval;
             }            
         }
     }
 
-    void CreateItem(int distance)
+    void CreateItem(float distance)
     {
         //一定の距離ごとにアイテムを生成
         //for (int i = startPos; i < goalPos; i += this.itemInterval)
